@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hitung Luas dan Keliling Lingkaran</title>
+</head>
+<body>
+    <body>
+        <form action="">
+          <label for="radius">Masukkan radius lingkaran:</label>
+          <input type="number" id="radius" name="radius" min="0" step="any" onchange="calculateCircle()">
+          <br><br>
+          <label for="diameter">Masukkan diameter lingkaran:</label>
+          <input type="number" id="diameter" name="diameter" min="0" step="any" onchange="calculateCircle()">
+          <br><br>
+          <p>Luas lingkaran: <span id="areaResult"></span></p>
+          <p>Keliling lingkaran: <span id="circumferenceResult"></span></p>
+        </form>
+      
+        <script>
+          function calculateCircle() {
+            const radiusInput = document.getElementById("radius");
+            const diameterInput = document.getElementById("diameter");
+            const areaResult = document.getElementById("areaResult");
+            const circumferenceResult = document.getElementById("circumferenceResult");
+      
+            let radius = parseFloat(radiusInput.value);
+            let diameter = parseFloat(diameterInput.value);
+      
+            if (radiusInput.value !== "") {
+              diameter = 2 * radius;
+              diameterInput.value = diameter;
+            } else if (diameterInput.value !== "") {
+              radius = diameter / 2;
+              radiusInput.value = radius;
+            } else {
+              areaResult.textContent = "";
+              circumferenceResult.textContent = "";
+              return;
+            }
+      
+            const area = Math.PI * radius * radius;
+            const circumference = 2 * Math.PI * radius;
+      
+            areaResult.textContent = area.toFixed(2);
+            circumferenceResult.textContent = circumference.toFixed(2);
+          }
+        </script>
+</body>
+</html>
